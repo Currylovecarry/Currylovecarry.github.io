@@ -3,34 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们的项目作品集</title>
+    <title>Team Portfolio</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
-        .member, .persona { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
-        img { max-width: 150px; border-radius: 50%; }
+        /* 基础与排版 - 采用苹果系统字体和经典浅灰背景 */
+        :root {
+            --bg-color: #f5f5f7;
+            --text-main: #1d1d1f;
+            --text-muted: #86868b;
+            --accent-blue: #0066cc;
+            --card-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* 苹果风卡片通用样式：大圆角、毛玻璃、柔和阴影 */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px); /* 毛玻璃效果 */
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-top: 0;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 17px;
+        }
+
+        /* Hero 区块 (首页头部) */
+        .hero {
+            text-align: center;
+            padding: 60px 0 80px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 团队成员区块 - 响应式网格布局 */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .member-card {
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .member-name {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .member-role {
+            color: var(--accent-blue);
+            font-weight: 500;
+            font-size: 15px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .member-info {
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        /* 项目与画像区块 */
+        .project-section .card {
+            padding: 50px;
+        }
+
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .persona-item {
+            background: rgba(0,0,0,0.02);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        /* 联系方式区块 */
+        .contact-section {
+            text-align: center;
+        }
+
+        a.contact-btn {
+            display: inline-block;
+            background-color: var(--text-main);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 16px;
+            transition: opacity 0.3s ease;
+        }
+
+        a.contact-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 18px; }
+            .project-section .card { padding: 30px; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>欢迎来到我们的项目主页 (Project Portfolio)</h1>
+    <div class="container">
+        
+        <header class="hero">
+            <h1>Creative Studio</h1>
+            <p>We are a passionate team dedicated to crafting elegant solutions and exploring user-centered design.</p>
+        </header>
 
-    <h2>👩‍💻 小组成员介绍 (Group Members)</h2>
-    <div class="member">
-        <h3>Name: [填入姓名]</h3>
-        <p><strong>Student ID:</strong> [填入学号]</p>
-        <img src="https://via.placeholder.com/150" alt="Profile picture">
-        <p><strong>Brief introduction:</strong> [在这里写一段简短的自我介绍...]</p>
-    </div>
+        <section>
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 32px;">Meet the Team</h2>
+            <div class="team-grid">
+                
+                <div class="card member-card">
+                    <img src="https://ui-avatars.com/api/?name=User+One&background=0066cc&color=fff&size=256" alt="Profile" class="avatar">
+                    <h3 class="member-name">你的名字</h3>
+                    <div class="member-role">Student ID: 1234567</div>
+                    <p class="member-info">A brief introduction about yourself. Passionate about web development and UI design.</p>
+                </div>
 
-    <h2>👥 项目用户画像 (Project Personas)</h2>
-    <div class="persona">
-        <h3>Persona 1: [用户画像名称，例如：忙碌的大学生]</h3>
-        <p>[这里用来填写 AI 帮你生成的第一个用户画像内容...]</p>
-    </div>
+                <div class="card member-card">
+                    <img src="https://ui-avatars.com/api/?name=User+Two&background=86868b&color=fff&size=256" alt="Profile" class="avatar">
+                    <h3 class="member-name">队友名字</h3>
+                    <div class="member-role">Student ID: 7654321</div>
+                    <p class="member-info">Brief introduction about your teammate. Focuses on data analysis and user research.</p>
+                </div>
 
-    <div class="persona">
-        <h3>Persona 2: [用户画像名称]</h3>
-        <p>[这里用来填写 AI 帮你生成的第二个用户画像内容...]</p>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="card">
+                <h2>Our Project: [项目名称]</h2>
+                <p>Describe your project briefly here. What problem are you solving? Who is it for?</p>
+                
+                <h3 style="margin-top: 40px; font-size: 24px;">Target Personas</h3>
+                <div class="persona-grid">
+                    <div class="persona-item">
+                        <h4>Persona 1: [名称]</h4>
+                        <p>[在这里填入 AI 帮你们生成的第一个用户画像...]</p>
+                    </div>
+                    <div class="persona-item">
+                        <h4>Persona 2: [名称]</h4>
+                        <p>[在这里填入 AI 帮你们生成的第二个用户画像...]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="card">
+                <h2>Get in Touch</h2>
+                <p>Have any questions about our project or research?</p>
+                <a href="mailto:your.email@student.xjtlu.edu.cn" class="contact-btn">Email Us</a>
+            </div>
+        </section>
+
     </div>
 
 </body>
